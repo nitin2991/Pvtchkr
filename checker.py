@@ -870,21 +870,21 @@ def send_fake_details_gen(message,bot):
 
         fake_email = generate_random_email(domain=random.choice(["gmail.com", "yahoo.com", "outlook.com", "hotmail.com"]))
 
-        fake_data = (
+       fake_data = (
     "📌 *Fake Address Details*\n\n"
     f"👤 *Name:* `{fake.name()}`\n"
     f"🏠 *Address:* `{fake.street_address().replace('\n', ', ')}`\n"
     f"🏙️ *City:* `{fake.city()}`\n"
     f"📍 *State:* `{getattr(fake, 'state', lambda: 'N/A')()}`\n"
-    f"📦 *Zip Code:* `{zip_code}`\n"
+    f"📦 *Zip Code:* `{fake.zipcode()}`\n"  # Ensure zip_code is defined
     f"🌍 *Country:* `{fake.current_country()}`\n"
-    f"📞 *Phone:* `{fake_phone}`\n"
-    f"✉️ *Email:* `{fake_email}`\n"
+    f"📞 *Phone:* `{fake.phone_number()}`\n"  # Ensure fake_phone is defined
+    f"✉️ *Email:* `{fake.email()}`\n"  # Ensure fake_email is defined
     f"🏢 *Company:* `{fake.company()}`\n"
     f"💼 *Job:* `{fake.job()}`\n"
     f"🌐 *Website:* `{fake.url()}`\n"
     f"💳 *Credit Card:* `{fake.credit_card_full()}`"
-)
+       )
 
         bot.reply_to(message, fake_data, parse_mode="Markdown")
 
